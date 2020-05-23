@@ -1,0 +1,18 @@
+version: "3"
+services:
+  db:
+    image: "mariadb"
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "wodemima"
+  web:
+    image: "phpmyadmin/phpmyadmin"
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: "db"
+      MYSQL_ROOT_PASSWORD: "wodemima"
+    depends_on:
+      - db
