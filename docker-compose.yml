@@ -1,7 +1,7 @@
 version: "3"
 services:
   db:
-    image: "mariadb:5.7.30"
+    image: "mariadb:10.5.6-focal"
     restart: always
     ports:
       - "3306:3306"
@@ -9,10 +9,12 @@ services:
       MYSQL_ROOT_PASSWORD: "wodemima"
   web:
     image: "phpmyadmin/phpmyadmin:5"
+    restart: always
     ports:
       - "8080:80"
     environment:
       PMA_HOST: "db"
       MYSQL_ROOT_PASSWORD: "wodemima"
+      PMA_ARBITRARY: 1
     depends_on:
       - db
