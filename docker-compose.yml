@@ -1,7 +1,7 @@
 version: "3"
 services:
   db:
-    image: "mariadb:10.5.6-focal"
+    image: "mariadb:lts-ubi9"
     restart: always
     ports:
       - "3306:3306"
@@ -12,7 +12,7 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql
   web:
-    image: "phpmyadmin/phpmyadmin:5.2-apache"
+    image: "phpmyadmin/phpmyadmin:5.2.2-apache"
     restart: always
     ports:
       - "8080:80"
