@@ -12,7 +12,7 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql
   web:
-    image: "phpmyadmin/phpmyadmin:5.2.2-apache"
+    image: "phpmyadmin:5.2.2-apache"
     restart: always
     ports:
       - "8080:80"
