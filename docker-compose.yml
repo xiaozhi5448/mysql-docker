@@ -7,8 +7,12 @@ services:
       - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: "wodemima"
+    networks:
+      - app-net
+    volumes:
+      - mysql-data:/var/lib/mysql
   web:
-    image: "phpmyadmin/phpmyadmin:5"
+    image: "phpmyadmin/phpmyadmin:5.2-apache"
     restart: always
     ports:
       - "8080:80"
@@ -18,3 +22,17 @@ services:
       PMA_ARBITRARY: 1
     depends_on:
       - db
+    networks:
+      - app-net
+
+volumes:
+  mysql-data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/xiaozhi/data/mysql-data
+      o: bind
+
+networks:
+  app-net:
+    driver: bridge
